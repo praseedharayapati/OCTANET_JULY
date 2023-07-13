@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <title>To-Do List</title>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="task2.css">
+</head>
+
+<body>
+    <h1>
+        <>------To-Do List------<>
+    </h1>
+    <input id="taskInput" type="text" placeholder="Enter a task">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+    <h2>Completed Tasks</h2>
+    <ul id="completedTaskList"></ul>
+    <h2>Deleted Tasks</h2>
+    <ul id="deletedTaskList"></ul>
+
+    <script>
+        var taskQueue = [];
+        var completedTaskQueue = [];
+        var deletedTaskQueue = [];
+
+        function addTask() {
+            var input = document.getElementById("taskInput");
+            var task = input.value;
+
+            if (task === "") {
+                alert("Please enter a task!");
+                return;
+            }
+
+            taskQueue.push(task);
+            updateTaskList();
+
+            input.value = "";
+        }
+
+        function completeTask(index) {
+            var task = taskQueue[index];
+            taskQueue.splice(index, 1);
+            completedTaskQueue.push(task);
+            updateTaskList();
+            updateCompletedTaskList();
+        }
+
+        function deleteTask(index, fromCompleted) {
+            if (fromCompleted) {
+                completedTaskQueue.splice(index, 1);
+            } else {
+                var task = taskQueue[index];
+                taskQueue.splice(index, 1);
+                deletedTaskQueue.push(task);
+            }
+            updateTaskList();
+            updateCompletedTaskList();
+            updateDeletedTaskList();
+        }
+
+        function deleteForever(index) {
+            var confirmation = confirm("Are you sure you want to delete this task forever?");
+            if (confirmation) {
+                deletedTaskQueue.splice(index, 1);
+                updateDeletedTaskList();
+            }
+        }
+
+        function restoreTask(index) {
+            var task = deletedTaskQueue[index];
+            deletedTaskQueue.splice(index, 1);
+            taskQueue.push(task);
+            updateTaskList();
+            updateDeletedTaskList();
+        }
+
+        function updateTaskList() {
+            var taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+
+            taskQueue.forEach(function(task, index) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(task));
+
+                var completeButton = document.createElement("button");
+                completeButton.innerText = "Complete";
+                completeButton.onclick = function() {
+                    completeTask(index);
+                };
+                li.appendChild(completeButton);
+
+                var deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                deleteButton.classList.add("delete-button");
+                deleteButton.onclick = function() {
+                    deleteTask(index, false);
+                };
+                li.appendChild(deleteButton);
+
+                taskList.appendChild(li);
+            });
+        }
+
+        function updateCompletedTaskList() {
+            var completedTaskList = document.getElementById("completedTaskList");
+            completedTaskList.innerHTML = "";
+
+            completedTaskQueue.forEach(function(task, index) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(task));
+                li.classList.add("completed");
+
+                var deleteButton = document.createElement("button");
+                deleteButton.innerText = "Delete";
+                deleteButton.classList.add("delete-button");
+                deleteButton.onclick = function() {
+                    deleteTask(index, true);
+                };
+                li.appendChild(deleteButton);
+
+                completedTaskList.appendChild(li);
+            });
+        }
+
+        function updateDeletedTaskList() {
+            var deletedTaskList = document.getElementById("deletedTaskList");
+            deletedTaskList.innerHTML = "";
+
+            deletedTaskQueue.forEach(function(task, index) {
+                var li = document.createElement("li");
+                li.appendChild(document.createTextNode(task));
+
+                var restoreButton = document.createElement("button");
+                restoreButton.innerText = "Restore";
+                restoreButton.onclick = function() {
+                    restoreTask(index);
+                };
+                li.appendChild(restoreButton);
+
+                var deleteForeverButton = document.createElement("button");
+                deleteForeverButton.innerText = "Delete Forever";
+                deleteForeverButton.classList.add("delete-forever-button");
+                deleteForeverButton.onclick = function() {
+                    deleteForever(index);
+                };
+                li.appendChild(deleteForeverButton);
+
+                deletedTaskList.appendChild(li);
+            });
+        }
+    </script>
+</body>
+
+</html>

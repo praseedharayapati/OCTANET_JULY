@@ -1,0 +1,57 @@
+body {
+    background-image: url('https://i.pinimg.com/originals/f0/f4/b9/f0f4b9b1fd4ae59a68a74b88eebe233f.png');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #663399;
+    font-size: 50px;
+    font-family: monospace;
+}
+
+input[type="text"] {
+
+    width: 200px;
+    height: 20px;
+    background-color: #e6e6fa;
+    color: #663399;
+}
+
+button {
+    margin-top: 10px;
+    border-radius: 10px;
+    border-width: 2px;
+    background-color: #b284be;
+    color: white;
+    margin-left: 20px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    color: #333;
+}
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+.delete-button {
+    margin-left: 10px;
+}
+
+.delete-forever-button {
+    margin-left: 10px;
+    color: black;
+}
