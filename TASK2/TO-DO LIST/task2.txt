@@ -1,15 +1,17 @@
+Small description on the code :
+
 The provided code is an implementation of a to-do list using HTML, CSS, and JavaScript. It creates a user interface where tasks can be added, marked as completed, and deleted. Here's an explanation of how the code works:
 
 - The HTML structure defines a title, input field, buttons, and three unordered lists: one for the task list, one for completed tasks, and one for deleted tasks.
 - CSS styling is applied to give the interface a visually appealing look, including background images, font styles, button styles, and list item formatting.
 - The JavaScript code handles the logic and interactivity of the to-do list.
-- The code declares three arrays: `taskQueue`, `completedTaskQueue`, and `deletedTaskQueue` to store the tasks in different states.
-- The `addTask()` function is called when the "Add Task" button is clicked. It retrieves the task input value, adds it to the `taskQueue` array, and updates the task list on the webpage.
-- The `completeTask()` function is triggered when the "Complete" button is clicked. It moves the task from the `taskQueue` array to the `completedTaskQueue` array and updates both task lists accordingly.
-- The `deleteTask()` function is called when the "Delete" button is clicked. Depending on whether the task is from the `completedTaskQueue` or `taskQueue`, it removes the task from the respective array and updates the task lists.
-- The `deleteForever()` function is invoked when the "Delete Forever" button is clicked in the deleted tasks list. It displays a confirmation prompt and permanently deletes the task if the user confirms.
-- The `restoreTask()` function moves a task from the `deletedTaskQueue` back to the `taskQueue` when the "Restore" button is clicked.
-- The `updateTaskList()`, `updateCompletedTaskList()`, and `updateDeletedTaskList()` functions handle updating the task lists on the webpage based on the data in the arrays.
+- The code declares three arrays: 'taskQueue', 'completedTaskQueue', and 'deletedTaskQueue' to store the tasks in different states.
+- The addTask(); function is called when the "Add Task" button is clicked. It retrieves the task input value, adds it to the 'taskQueue' array, and updates the task list on the webpage.
+- The completeTask() function is triggered when the "Complete" button is clicked. It moves the task from the 'taskQueue' array to the 'completedTaskQueue' array and updates both task lists accordingly.
+- The deleteTask() function is called when the "Delete" button is clicked. Depending on whether the task is from the `completedTaskQueue` or `taskQueue`, it removes the task from the respective array and updates the task lists.
+- The deleteForever() function is invoked when the "Delete Forever" button is clicked in the deleted tasks list. It displays a confirmation prompt and permanently deletes the task if the user confirms.
+- The restoreTask() function moves a task from the "deletedTaskQueue" back to the "taskQueue" when the "Restore" button is clicked.
+- The updateTaskList(), updateCompletedTaskList(), and 'updateDeletedTaskList()' functions handle updating the task lists on the webpage based on the data in the arrays.
 - Each task is displayed as a list item (`<li>`) with the task text and corresponding buttons for completing or deleting the task.
 
 Overall, this code creates an to-do list interface where users can add, complete, delete, and restore tasks. It provides separate lists for active, completed, and deleted tasks, giving users control over task management and organization.
